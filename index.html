@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click Me</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        #message {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: opacity 0.3s;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="message">Click anywhere to begin</div>
+
+    <script>
+        const messages = [
+            "Nothing to see here",
+            "Stop it",
+            "Turn back",
+            "c'mon stop this",
+            "Last chance",
+            "Aren't you getting tired of this",
+            "You know you can stop this",
+            "Are you having fun",
+            "Dude I am getting tried",
+            "Can we do this some other time",
+            "I need some sleep",
+            "Want do you want",
+            "Nothing",
+            "fine",
+            "take this, you win",
+            "ha, you thought so",
+            "never mind",
+            "take the win and leave me alone",
+            "fine you win"
+        ];
+
+        let currentIndex = 0;
+        const messageElement = document.getElementById('message');
+
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 70%, 40%)`;
+        }
+
+        function updatePage() {
+            if (currentIndex < messages.length) {
+                // Fade out
+                messageElement.style.opacity = '0';
+                
+                setTimeout(() => {
+                    // Change background color
+                    document.body.style.backgroundColor = getRandomColor();
+                    // Update message
+                    messageElement.textContent = messages[currentIndex];
+                    // Fade in
+                    messageElement.style.opacity = '1';
+                    currentIndex++;
+                }, 300);
+            }
+        }
+
+        document.body.addEventListener('click', updatePage);
+    </script>
+</body>
+</html>
